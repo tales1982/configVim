@@ -3,8 +3,36 @@ syntax on
 
 " ativar indentação automática
 set autoindent
+"-----------Aqui vai os pluggins----------
+"
+call plug#begin('~/.vim/plugged')
+Plug 'matsuuu/pinkmare'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'jiangmiao/auto-pairs'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+call plug#end()
 
-" ativa indentação inteligente, o Vim tentará adivinhar
+"------------Fim dos pluggins------------- 
+
+"----------Temas de cores ---------------
+
+colorscheme pinkmare
+hi! MatchParen cterm=NONE,bold gui=NONE,bold guibg=NONE guifg=#FFFF00
+
+"--------FIM temas de cores ------------
+"-------------YOUCOMPLETEME---------------
+"
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+set completeopt-=preview
+let g:ycm_show_diagnostics_ui = 0
+"-------------FIM YOUCOMPLETEME --------
+"
+"ativa indentação inteligente, o Vim tentará adivinhar
 " qual é a melhor indentação para o código quando você
 " efetuar quebra de linha. Funciona bem para linguagem C
 set smartindent
@@ -17,6 +45,10 @@ set history=5000
 " ativar numeração de linha
 set number
 
+set title
+
+"Para pergunta se quero salva ao sai
+set confirm 
 " destaca a linha em que o cursor está posicionado
 " ótimo para quem não enxerga muito bem
 set cursorline
@@ -40,14 +72,21 @@ set foldmethod=syntax
 set foldlevel=99
 nnoremap <space> za
 
-colo materialbox
+"colo materialbox
 
 let g:indentLine_enabled = 1
-map <c-k>i :IndentLinesToggle<cr>
-
-map <C-n> :NERDTreeToggle<cr>
+map <C-k>i :IndentLinesToggle<CR>
+map q :quit<CR>
+map <C-q> :quit!<CR>
+map <C-s> :write<CR>
+map <C-n> :NERDTreeToggle<CR>
 set encoding=utf8
 set guifont=Anonymice\ Nerd\ Font\ Mono:h12
+"o set incsearch serve pra fazer uma preocura por nomes use o /e oque quero
+"preocura
+set incsearch
+" O wildmenu me mostra uma aba com os nomes do arquivos que estou preocurando
+set wildmenu
 
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
@@ -78,4 +117,39 @@ let g:ale_completion_enabled = 0
 " nmap <F10> :ALEFix<CR>
 " let g:ale_fix_on_save = 1
 
-source ~/.vim/coc.nvimrc
+"--------------- UTILSSNIPS --------------------------
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+"-------------- VIM AIRLINE ----------------------
+let g:airline_theme = 'dracula'
+"--------------- powerline symbols ----------------
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols = {}
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰ '
+let g:airline_symbols.maxlinenr = '  '
+let g:airline_symbols.dirty='⚡'
+
+"---------------------- MARKDOWN --------------------
+filetype plugin on
+"Uncomment to override defaults:
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
