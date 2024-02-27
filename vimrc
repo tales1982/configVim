@@ -153,3 +153,9 @@ filetype plugin on
 "let g:instant_markdown_autoscroll = 0
 "let g:instant_markdown_port = 8888
 "let g:instant_markdown_python = 1
+
+
+#intall
+#curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+#+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
